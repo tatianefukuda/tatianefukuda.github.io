@@ -2,7 +2,17 @@
 <html lang="en">
 <head>
   <!-- Start cookie banner --> 
-  <script type="application/javascript"> var UC_UI_SUPPRESS_CMP_DISPLAY=true; </script>
+ <script>
+  (function () {
+    var ua = navigator.userAgent;
+    var isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+    var isSafari11 = isSafari && ua.includes("Version/11.");
+    if (isSafari11) {
+      window.UC_UI_SUPPRESS_CMP_DISPLAY = true;
+    }
+  })();
+</script>
+
   <script id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-settings-id="gTqc5PwUubh9Qw" async></script>  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Test Page</title>
