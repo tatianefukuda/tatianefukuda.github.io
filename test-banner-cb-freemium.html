@@ -2,45 +2,107 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Test Page - Settings ID</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test Page tatiane.fukuda@usercentrics.com - Settings ID 556d3955-6cce-404b-b926-355d384adc1f - </title>
+
   <!-- Start cookie banner -->
-  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="556d3955-6cce-404b-b926-355d384adc1f"  type="text/javascript"></script>  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 20px;
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="556d3955-6cce-404b-b926-355d384adc1f"  type="text/javascript"></script>
+
+  <style>
+    :root {
+      --bg: #f4f4f4;
+      --card: #ffffff;
+      --ink: #333;
+      --muted: #666;
+      --line: #e3e3e3;
+      --accent: #0b6ea8;
+      --ok: #1e7a45;
+      --warn: #a8570b;
+      --no: #a32222;
     }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+      background-color: var(--bg);
+      color: var(--ink);
+      margin: 0;
+      padding: 20px 20px 120px;
+    }
+
     .container {
       max-width: 800px;
-      margin: 0 auto;
-      background: white;
+      margin: 0 auto 24px;
+      background: var(--card);
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
     }
+
+    .container h1 { font-size: 22px; margin-top: 0; }
+    .container p { color: var(--muted); }
+
     iframe {
       width: 100%;
       height: 450px;
       border: none;
       border-radius: 8px;
     }
-  </style>
-</head>
-<body>
-  <h2 style="color:#555;">Config: data-cid="556d3955-6cce-404b-b926-355d384adc1f"</h2>
-  <h2 style="color:#555;">Login: tatiane.fukuda@usercentrics.com - Freemum</h2>
-  <div class="container">
-    <h1>Youtube video</h1>
-    <p>How to setup Usercentrics Web CMP</p>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/SCOM3LOlcu8?si=RyStfito2I6g2uQx" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-  </div>
-  <br>
-  <div class="container">
-    <h1>Google Maps</h1>
-    <p>Usercentrics office</p>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.73392635754!2d-9.153208024523748!3d38.72391735692244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1933005f7f7687%3A0xd3b21147262d3b0!2sUsercentrics!5e0!3m2!1sen!2spt!4v1764752558152!5m2!1sen!2spt" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </div>
-</body>
-</html>
+
+    .page-head { max-width: 800px; margin: 0 auto 24px; }
+    .page-head h2 { color: #555; font-size: 16px; font-weight: normal; margin: 4px 0; }
+
+    /* In page navigation */
+    nav.jump {
+      max-width: 800px;
+      margin: 0 auto 24px;
+      background: var(--card);
+      border-radius: 12px;
+      padding: 14px 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+    nav.jump a {
+      display: inline-block;
+      margin: 4px 12px 4px 0;
+      color: var(--accent);
+    }
+
+    /* Buttons */
+    button, .btn {
+      font: inherit;
+      cursor: pointer;
+      background: #fff;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 4px 6px 4px 0;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+    }
+    button:hover, .btn:hover { border-color: var(--accent); color: var(--accent); }
+    button:focus-visible, .btn:focus-visible, a:focus-visible, input:focus-visible,
+    select:focus-visible, textarea:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }
+    button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    button.primary:hover { background: #095883; color: #fff; }
+
+    .row { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+
+    /* Form fields */
+    label.field { display: block; margin: 12px 0 4px; font-size: 14px; }
+    input[type="text"], input[type="email"], select, textarea {
+      font: inherit;
+      width: 100%;
+      max-width: 360px;
+      padding: 9px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .checks label { display: block; margin: 8px 0;
