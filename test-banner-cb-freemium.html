@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Test Page tatiane.fukuda@usercentrics.com - Settings ID 556d3955-6cce-404b-b926-355d384adc1f - </title>
+  <title>Test Page tatiane.fukuda@usercentrics.com - Settings ID 556d3955-6cce-404b-b926-355d384adc1f</title>
 
   <!-- Start cookie banner -->
-  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="556d3955-6cce-404b-b926-355d384adc1f"  type="text/javascript"></script>
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="556d3955-6cce-404b-b926-355d384adc1f" type="text/javascript"></script>
 
   <style>
     :root {
@@ -105,4 +105,513 @@
       border-radius: 8px;
       background: #fff;
     }
-    .checks label { display: block; margin: 8px 0;
+    .checks label { display: block; margin: 8px 0; font-size: 15px; }
+
+    /* Tabs */
+    .tabs { display: flex; gap: 6px; border-bottom: 1px solid var(--line); margin-bottom: 14px; flex-wrap: wrap; }
+    .tabs button {
+      border: none;
+      border-bottom: 3px solid transparent;
+      border-radius: 0;
+      box-shadow: none;
+      margin: 0;
+      padding: 10px 12px;
+      color: var(--muted);
+    }
+    .tabs button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); font-weight: bold; }
+    .panel[hidden] { display: none; }
+
+    /* Accordion */
+    details {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 10px;
+      background: #fcfcfc;
+    }
+    summary { cursor: pointer; font-weight: bold; }
+    details p { margin-bottom: 0; }
+
+    /* Cards grid */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+    .tile {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px;
+      background: #fcfcfc;
+      cursor: pointer;
+      text-align: left;
+      box-shadow: none;
+      margin: 0;
+    }
+    .tile[aria-pressed="true"] { border-color: var(--accent); background: #eef6fb; }
+    .tile strong { display: block; margin-bottom: 4px; }
+    .tile span { font-size: 13px; color: var(--muted); }
+
+    /* Modal */
+    dialog {
+      border: none;
+      border-radius: 12px;
+      padding: 22px;
+      max-width: 420px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    }
+    dialog::backdrop { background: rgba(0,0,0,0.45); }
+
+    /* Consent monitor */
+    #monitor {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      width: 260px;
+      max-height: 70vh;
+      overflow: auto;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+      text-align: left;
+      font-size: 12.5px;
+      z-index: 2147483000;
+    }
+    #monitor header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      font-weight: bold;
+    }
+    #monitor header button { padding: 2px 8px; margin: 0; font-size: 12px; }
+    #monitor .body { padding: 8px 10px; }
+    #monitor.collapsed .body { display: none; }
+    .kv { display: flex; justify-content: space-between; gap: 8px; padding: 2px 0; }
+    .kv span:last-child { font-weight: bold; }
+    .yes { color: var(--ok); }
+    .no { color: var(--no); }
+    .pending { color: var(--warn); }
+    #log {
+      margin: 8px 0 0;
+      padding: 8px;
+      background: #f7f7f7;
+      border-radius: 6px;
+      max-height: 200px;
+      overflow: auto;
+      font-family: Consolas, Menlo, monospace;
+      font-size: 11.5px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+    .bar {
+      height: 6px;
+      background: #eee;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 6px 0 10px;
+    }
+    .bar i { display: block; height: 100%; width: 0; background: var(--accent); }
+
+    footer {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 18px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    footer a { color: var(--accent); margin: 0 8px; }
+
+    .spacer { height: 40vh; }
+
+    @media (max-width: 900px) {
+      #monitor { position: static; width: auto; max-width: 800px; margin: 0 auto 20px; max-height: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; }
+    }
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+
+  <div class="page-head">
+    <h2>Config: data-cid="556d3955-6cce-404b-b926-355d384adc1f"</h2>
+    <h2>Login: tatiane.fukuda@usercentrics.com - Freemum</h2>
+  </div>
+
+  <!-- Consent monitor, useful while scrolling and clicking -->
+  <section id="monitor" aria-label="Consent monitor">
+    <header>
+      <span>Consent monitor</span>
+      <button type="button" id="monitorToggle" aria-expanded="true">Hide</button>
+    </header>
+    <div class="body">
+      <div class="kv"><span>Scroll depth</span><span id="scrollPct">0%</span></div>
+      <div class="bar"><i id="scrollBar"></i></div>
+      <div class="kv"><span>Has response</span><span id="cHasResponse" class="pending">unknown</span></div>
+      <div class="kv"><span>Preferences</span><span id="cPreferences" class="pending">unknown</span></div>
+      <div class="kv"><span>Statistics</span><span id="cStatistics" class="pending">unknown</span></div>
+      <div class="kv"><span>Marketing</span><span id="cMarketing" class="pending">unknown</span></div>
+      <div class="kv"><span>Clicks recorded</span><span id="clickCount">0</span></div>
+      <pre id="log" aria-live="polite">Waiting for banner events</pre>
+      <button type="button" id="clearLog">Clear log</button>
+    </div>
+  </section>
+
+  <nav class="jump" aria-label="Jump to section">
+    <strong>Jump to:</strong>
+    <a href="#video">Video</a>
+    <a href="#maps">Maps</a>
+    <a href="#actions">Click actions</a>
+    <a href="#form">Form</a>
+    <a href="#tabs">Tabs</a>
+    <a href="#faq">Accordion</a>
+    <a href="#declaration">Cookie declaration</a>
+  </nav>
+
+  <div class="container" id="video">
+    <h1>Youtube video</h1>
+    <p>How to setup Usercentrics Web CMP</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/SCOM3LOlcu8?si=RyStfito2I6g2uQx" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+
+  <div class="container" id="maps">
+    <h1>Google Maps</h1>
+    <p>Usercentrics office</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.73392635754!2d-9.153208024523748!3d38.72391735692244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1933005f7f7687%3A0xd3b21147262d3b0!2sUsercentrics!5e0!3m2!1sen!2spt!4v1764752558152!5m2!1sen!2spt" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Google Maps embed"></iframe>
+  </div>
+
+  <div class="container" id="actions">
+    <h1>Click actions</h1>
+    <p>Every click below is written to the consent monitor log with a timestamp, so you can check what the banner does while you interact with the page.</p>
+
+    <h3>Banner controls</h3>
+    <div class="row">
+      <button type="button" class="primary" data-cb="renew">Show banner again</button>
+      <button type="button" data-cb="show">Show</button>
+      <button type="button" data-cb="hide">Hide</button>
+      <button type="button" data-cb="withdraw">Withdraw consent</button>
+      <button type="button" data-cb="state">Read consent state</button>
+    </div>
+
+    <h3>Plain page clicks</h3>
+    <div class="row">
+      <button type="button" data-log="Counter button">Counter</button>
+      <button type="button" data-log="Load more content" id="loadMore">Load more content</button>
+      <button type="button" data-log="Open dialog" id="openDialog">Open dialog</button>
+      <button type="button" data-log="Scroll to top" id="toTop">Back to top</button>
+    </div>
+
+    <h3>Links</h3>
+    <div class="row">
+      <a class="btn" href="#declaration" data-log="Internal anchor link">Internal link</a>
+      <a class="btn" href="https://usercentrics.com" target="_blank" rel="noopener" data-log="External link new tab">External link</a>
+      <a class="btn" href="javascript:void(0)" data-log="Inert link">Inert link</a>
+    </div>
+
+    <h3>Selectable tiles</h3>
+    <div class="grid" id="tiles">
+      <button type="button" class="tile" aria-pressed="false" data-log="Tile Necessary"><strong>Necessary</strong><span>Always active</span></button>
+      <button type="button" class="tile" aria-pressed="false" data-log="Tile Preferences"><strong>Preferences</strong><span>Toggle test</span></button>
+      <button type="button" class="tile" aria-pressed="false" data-log="Tile Statistics"><strong>Statistics</strong><span>Toggle test</span></button>
+      <button type="button" class="tile" aria-pressed="false" data-log="Tile Marketing"><strong>Marketing</strong><span>Toggle test</span></button>
+    </div>
+  </div>
+
+  <div class="container" id="form">
+    <h1>Form fields</h1>
+    <p>Fields for keyboard focus order checks and for clicking while the banner is open.</p>
+
+    <label class="field" for="fname">Full name</label>
+    <input type="text" id="fname" data-log="Name field" placeholder="Type a name">
+
+    <label class="field" for="femail">Email</label>
+    <input type="email" id="femail" data-log="Email field" placeholder="name@example.com">
+
+    <label class="field" for="fcountry">Country</label>
+    <select id="fcountry" data-log="Country select">
+      <option>Portugal</option>
+      <option>Germany</option>
+      <option>France</option>
+      <option>United States</option>
+    </select>
+
+    <div class="checks">
+      <label><input type="checkbox" data-log="Checkbox newsletter"> Send me the newsletter</label>
+      <label><input type="checkbox" data-log="Checkbox terms"> I accept the terms</label>
+      <label><input type="radio" name="plan" data-log="Radio free"> Free plan</label>
+      <label><input type="radio" name="plan" data-log="Radio paid"> Paid plan</label>
+    </div>
+
+    <label class="field" for="fmsg">Message</label>
+    <textarea id="fmsg" rows="3" data-log="Message field" placeholder="Write something"></textarea>
+
+    <div class="row" style="margin-top:14px">
+      <button type="button" class="primary" data-log="Save changes">Save changes</button>
+      <button type="button" data-log="Reset form" id="resetForm">Reset form</button>
+    </div>
+  </div>
+
+  <div class="container" id="tabs">
+    <h1>Tabs</h1>
+    <p>Click each tab to swap the panel below it.</p>
+    <div class="tabs" role="tablist" aria-label="Test tabs">
+      <button type="button" role="tab" aria-selected="true" aria-controls="p1" id="t1">Overview</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="p2" id="t2">Cookies</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="p3" id="t3">Scripts</button>
+    </div>
+    <div class="panel" role="tabpanel" id="p1" aria-labelledby="t1">
+      <p>This panel is visible by default. Switching tabs does not reload the page, so the banner should stay in the same state.</p>
+    </div>
+    <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+      <p>Use this panel to check whether any cookie is written before a consent decision is recorded.</p>
+    </div>
+    <div class="panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+      <p>Use this panel to check whether blocked scripts run only after the matching category is accepted.</p>
+    </div>
+  </div>
+
+  <div class="container" id="faq">
+    <h1>Accordion</h1>
+    <p>Expanding a section grows the page, so the scroll length changes while you test.</p>
+    <details>
+      <summary>What does the consent monitor show</summary>
+      <p>Scroll depth, the current consent categories reported by the banner, a click counter and a timestamped event log.</p>
+    </details>
+    <details>
+      <summary>Why are the embeds blocked before consent</summary>
+      <p>The video and the map are third party embeds, so they stay blocked until the matching category is accepted.</p>
+    </details>
+    <details>
+      <summary>How do I bring the banner back</summary>
+      <p>Use the button in the click actions section, or the link in the footer.</p>
+    </details>
+    <details>
+      <summary>Where does the extra content appear</summary>
+      <p>Below this card, after you use the load more content button.</p>
+    </details>
+  </div>
+
+  <div class="container" id="extra" hidden>
+    <h1>Extra content</h1>
+    <div id="extraBody"></div>
+  </div>
+
+  <div class="container" id="declaration">
+    <h1>Cookie declaration</h1>
+    <p>Rendered by the Cookiebot declaration script for this configuration.</p>
+    <script id="CookieDeclaration" src="https://consent.cookiebot.com/556d3955-6cce-404b-b926-355d384adc1f/cd.js" type="text/javascript" async></script>
+  </div>
+
+  <div class="spacer" aria-hidden="true"></div>
+
+  <footer>
+    <a href="#" id="footerRenew" data-log="Footer cookie settings">Cookie settings</a>
+    <a href="#video" data-log="Footer back to video">Back to video</a>
+    <span>Test page for CMP checks</span>
+  </footer>
+
+  <dialog id="testDialog" aria-labelledby="dlgTitle">
+    <h2 id="dlgTitle" style="margin-top:0">Test dialog</h2>
+    <p>A dialog on top of the page, so you can check focus handling and stacking against the banner.</p>
+    <button type="button" class="primary" id="closeDialog">Close dialog</button>
+  </dialog>
+
+  <script>
+    (function () {
+      var logEl = document.getElementById('log');
+      var clickCountEl = document.getElementById('clickCount');
+      var clicks = 0;
+      var lines = [];
+
+      function stamp() {
+        var d = new Date();
+        return d.toTimeString().slice(0, 8) + '.' + String(d.getMilliseconds()).padStart(3, '0');
+      }
+
+      function log(msg) {
+        lines.push(stamp() + '  ' + msg);
+        if (lines.length > 120) lines.shift();
+        logEl.textContent = lines.join('\n');
+        logEl.scrollTop = logEl.scrollHeight;
+      }
+
+      function setFlag(id, value) {
+        var el = document.getElementById(id);
+        el.textContent = value === true ? 'yes' : value === false ? 'no' : 'unknown';
+        el.className = value === true ? 'yes' : value === false ? 'no' : 'pending';
+      }
+
+      function readState(source) {
+        if (typeof window.Cookiebot === 'undefined') {
+          log('Cookiebot object not available yet');
+          return;
+        }
+        var c = window.Cookiebot.consent || {};
+        setFlag('cHasResponse', !!window.Cookiebot.hasResponse);
+        setFlag('cPreferences', !!c.preferences);
+        setFlag('cStatistics', !!c.statistics);
+        setFlag('cMarketing', !!c.marketing);
+        log('state (' + source + '): response=' + !!window.Cookiebot.hasResponse +
+            ' pref=' + !!c.preferences + ' stat=' + !!c.statistics + ' mark=' + !!c.marketing);
+      }
+
+      // Global click logging
+      document.addEventListener('click', function (e) {
+        var target = e.target.closest('[data-log], [data-cb], a, button, summary, input, select');
+        if (!target) return;
+        var name = target.getAttribute('data-log') ||
+                   target.getAttribute('data-cb') ||
+                   (target.textContent || '').trim().slice(0, 40) ||
+                   target.tagName.toLowerCase();
+        clicks++;
+        clickCountEl.textContent = clicks;
+        log('click: ' + name);
+      }, true);
+
+      document.addEventListener('change', function (e) {
+        var t = e.target;
+        if (!t.getAttribute) return;
+        var name = t.getAttribute('data-log') || t.id || t.tagName.toLowerCase();
+        var value = t.type === 'checkbox' || t.type === 'radio' ? t.checked : t.value;
+        log('change: ' + name + ' = ' + value);
+      });
+
+      // Scroll depth
+      var pctEl = document.getElementById('scrollPct');
+      var barEl = document.getElementById('scrollBar');
+      var marks = { 25: false, 50: false, 75: false, 100: false };
+      function onScroll() {
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - window.innerHeight;
+        var pct = max > 0 ? Math.round((window.scrollY / max) * 100) : 0;
+        pct = Math.max(0, Math.min(100, pct));
+        pctEl.textContent = pct + '%';
+        barEl.style.width = pct + '%';
+        Object.keys(marks).forEach(function (m) {
+          if (!marks[m] && pct >= Number(m)) {
+            marks[m] = true;
+            log('scroll depth reached ' + m + '%');
+          }
+        });
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      onScroll();
+
+      // Banner controls
+      document.querySelectorAll('[data-cb]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var action = btn.getAttribute('data-cb');
+          if (typeof window.Cookiebot === 'undefined') {
+            log('Cookiebot object not available, cannot run ' + action);
+            return;
+          }
+          if (action === 'state') { readState('manual'); return; }
+          try {
+            window.Cookiebot[action]();
+            log('called Cookiebot.' + action + '()');
+          } catch (err) {
+            log('error calling Cookiebot.' + action + '(): ' + err.message);
+          }
+        });
+      });
+
+      document.getElementById('footerRenew').addEventListener('click', function (e) {
+        e.preventDefault();
+        if (window.Cookiebot) window.Cookiebot.renew();
+      });
+
+      // Monitor collapse
+      var monitor = document.getElementById('monitor');
+      var toggle = document.getElementById('monitorToggle');
+      toggle.addEventListener('click', function () {
+        var collapsed = monitor.classList.toggle('collapsed');
+        toggle.textContent = collapsed ? 'Show' : 'Hide';
+        toggle.setAttribute('aria-expanded', String(!collapsed));
+      });
+
+      document.getElementById('clearLog').addEventListener('click', function () {
+        lines = [];
+        logEl.textContent = 'Log cleared';
+      });
+
+      // Tiles
+      document.querySelectorAll('.tile').forEach(function (tile) {
+        tile.addEventListener('click', function () {
+          var pressed = tile.getAttribute('aria-pressed') === 'true';
+          tile.setAttribute('aria-pressed', String(!pressed));
+        });
+      });
+
+      // Tabs
+      var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          tabs.forEach(function (t) {
+            var selected = t === tab;
+            t.setAttribute('aria-selected', String(selected));
+            document.getElementById(t.getAttribute('aria-controls')).hidden = !selected;
+          });
+        });
+      });
+
+      // Load more content
+      var extra = document.getElementById('extra');
+      var extraBody = document.getElementById('extraBody');
+      var blocks = 0;
+      document.getElementById('loadMore').addEventListener('click', function () {
+        extra.hidden = false;
+        blocks++;
+        var p = document.createElement('p');
+        p.textContent = 'Content block ' + blocks + '. Added at ' + stamp() +
+          '. Each block makes the page taller, which is handy for scroll based checks.';
+        extraBody.appendChild(p);
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('data-log', 'Extra block ' + blocks + ' button');
+        b.textContent = 'Click block ' + blocks;
+        extraBody.appendChild(b);
+        onScroll();
+      });
+
+      // Dialog
+      var dlg = document.getElementById('testDialog');
+      document.getElementById('openDialog').addEventListener('click', function () {
+        if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+      });
+      document.getElementById('closeDialog').addEventListener('click', function () {
+        if (dlg.close) dlg.close(); else dlg.removeAttribute('open');
+      });
+
+      document.getElementById('toTop').addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      document.getElementById('resetForm').addEventListener('click', function () {
+        document.querySelectorAll('#form input, #form select, #form textarea').forEach(function (el) {
+          if (el.type === 'checkbox' || el.type === 'radio') el.checked = false;
+          else if (el.tagName === 'SELECT') el.selectedIndex = 0;
+          else el.value = '';
+        });
+        log('form reset');
+      });
+
+      // Cookiebot events
+      ['CookiebotOnLoad', 'CookiebotOnDialogInit', 'CookiebotOnDialogDisplay',
+       'CookiebotOnAccept', 'CookiebotOnDecline', 'CookiebotOnTagsExecuted'].forEach(function (evt) {
+        window.addEventListener(evt, function () {
+          log('event: ' + evt);
+          readState(evt);
+        });
+      });
+
+      window.addEventListener('load', function () {
+        setTimeout(function () { readState('page load'); }, 400);
+      });
+
+      log('page ready');
+    })();
+  </script>
+</body>
+</html>
