@@ -3,11 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Test Page tatiane.fukuda+freemium@gmail.com - Settings ID 556d3955-6cce-404b-b926-355d384adc1f</title>
+  <title>Test Page tatiane.fukuda+freemium@gmail.com - Usercentrics Web CMP</title>
 
-  <!-- Start cookie banner -->
-  <script id="usercentrics-cmp" src="https://app.usercentrics.eu/browser-ui/latest/loader.js" data-settings-id="WjO-ik2bu" async></script>
+  <!-- Start cookie banner (Usercentrics Web CMP) -->
+  <script id="usercentrics-cmp" src="https://app.usercentrics.eu/browser-ui/latest/loader.js" data-settings-id="5YSro-sdMomFXyy" async></script>
 
+  <!--
+    STYLE ISOLATION
+    Every rule below is scoped to .page. The Usercentrics banner renders inside a shadow
+    root under #usercentrics-root, so page CSS cannot reach it anyway, but the scoping is
+    kept as a second line of defence and to keep the cookie declaration untouched.
+    Do not add bare element selectors (button, input, a, *, body) to this stylesheet.
+  -->
   <style>
     :root {
       --bg: #f4f4f4;
@@ -21,18 +28,23 @@
       --no: #a32222;
     }
 
-    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
+    /* body carries background and spacing only, never typography or colour */
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      text-align: center;
       background-color: var(--bg);
-      color: var(--ink);
       margin: 0;
       padding: 20px 20px 120px;
     }
 
-    .container {
+    .page {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      text-align: center;
+    }
+    .page, .page * { box-sizing: border-box; }
+
+    .page .container {
       max-width: 800px;
       margin: 0 auto 24px;
       background: var(--card);
@@ -42,21 +54,21 @@
       text-align: left;
     }
 
-    .container h1 { font-size: 22px; margin-top: 0; }
-    .container p { color: var(--muted); }
+    .page .container h1 { font-size: 22px; margin-top: 0; }
+    .page .container p { color: var(--muted); }
 
-    iframe {
+    .page iframe {
       width: 100%;
       height: 450px;
       border: none;
       border-radius: 8px;
     }
 
-    .page-head { max-width: 800px; margin: 0 auto 24px; }
-    .page-head h2 { color: #555; font-size: 16px; font-weight: normal; margin: 4px 0; }
+    .page .page-head { max-width: 800px; margin: 0 auto 24px; }
+    .page .page-head h2 { color: #555; font-size: 16px; font-weight: normal; margin: 4px 0; }
 
     /* In page navigation */
-    nav.jump {
+    .page nav.jump {
       max-width: 800px;
       margin: 0 auto 24px;
       background: var(--card);
@@ -65,14 +77,14 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       text-align: left;
     }
-    nav.jump a {
+    .page nav.jump a {
       display: inline-block;
       margin: 4px 12px 4px 0;
       color: var(--accent);
     }
 
     /* Buttons */
-    button, .btn {
+    .page button, .page .btn {
       font: inherit;
       cursor: pointer;
       background: #fff;
@@ -83,20 +95,21 @@
       margin: 4px 6px 4px 0;
       box-shadow: 0 1px 2px rgba(0,0,0,0.06);
     }
-    button:hover, .btn:hover { border-color: var(--accent); color: var(--accent); }
-    button:focus-visible, .btn:focus-visible, a:focus-visible, input:focus-visible,
-    select:focus-visible, textarea:focus-visible, summary:focus-visible {
+    .page button:hover, .page .btn:hover { border-color: var(--accent); color: var(--accent); }
+    .page button:focus-visible, .page .btn:focus-visible, .page a:focus-visible,
+    .page input:focus-visible, .page select:focus-visible, .page textarea:focus-visible,
+    .page summary:focus-visible {
       outline: 3px solid var(--accent);
       outline-offset: 2px;
     }
-    button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-    button.primary:hover { background: #095883; color: #fff; }
+    .page button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .page button.primary:hover { background: #095883; color: #fff; }
 
-    .row { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+    .page .row { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
 
     /* Form fields */
-    label.field { display: block; margin: 12px 0 4px; font-size: 14px; }
-    input[type="text"], input[type="email"], select, textarea {
+    .page label.field { display: block; margin: 12px 0 4px; font-size: 14px; }
+    .page input[type="text"], .page input[type="email"], .page select, .page textarea {
       font: inherit;
       width: 100%;
       max-width: 360px;
@@ -105,11 +118,11 @@
       border-radius: 8px;
       background: #fff;
     }
-    .checks label { display: block; margin: 8px 0; font-size: 15px; }
+    .page .checks label { display: block; margin: 8px 0; font-size: 15px; }
 
     /* Tabs */
-    .tabs { display: flex; gap: 6px; border-bottom: 1px solid var(--line); margin-bottom: 14px; flex-wrap: wrap; }
-    .tabs button {
+    .page .tabs { display: flex; gap: 6px; border-bottom: 1px solid var(--line); margin-bottom: 14px; flex-wrap: wrap; }
+    .page .tabs button {
       border: none;
       border-bottom: 3px solid transparent;
       border-radius: 0;
@@ -118,23 +131,23 @@
       padding: 10px 12px;
       color: var(--muted);
     }
-    .tabs button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); font-weight: bold; }
-    .panel[hidden] { display: none; }
+    .page .tabs button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); font-weight: bold; }
+    .page .panel[hidden] { display: none; }
 
     /* Accordion */
-    details {
+    .page details {
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 10px 14px;
       margin-bottom: 10px;
       background: #fcfcfc;
     }
-    summary { cursor: pointer; font-weight: bold; }
-    details p { margin-bottom: 0; }
+    .page summary { cursor: pointer; font-weight: bold; }
+    .page details p { margin-bottom: 0; }
 
     /* Cards grid */
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
-    .tile {
+    .page .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+    .page .tile {
       border: 1px solid var(--line);
       border-radius: 10px;
       padding: 14px;
@@ -144,27 +157,27 @@
       box-shadow: none;
       margin: 0;
     }
-    .tile[aria-pressed="true"] { border-color: var(--accent); background: #eef6fb; }
-    .tile strong { display: block; margin-bottom: 4px; }
-    .tile span { font-size: 13px; color: var(--muted); }
+    .page .tile[aria-pressed="true"] { border-color: var(--accent); background: #eef6fb; }
+    .page .tile strong { display: block; margin-bottom: 4px; }
+    .page .tile span { font-size: 13px; color: var(--muted); }
 
     /* Modal */
-    dialog {
+    .page dialog {
       border: none;
       border-radius: 12px;
       padding: 22px;
       max-width: 420px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.25);
     }
-    dialog::backdrop { background: rgba(0,0,0,0.45); }
+    .page dialog::backdrop { background: rgba(0,0,0,0.45); }
 
     /* Consent monitor */
-    #monitor {
+    .page #monitor {
       position: fixed;
       top: 12px;
       right: 12px;
-      width: 260px;
-      max-height: 70vh;
+      width: 270px;
+      max-height: 78vh;
       overflow: auto;
       background: #fff;
       border: 1px solid var(--line);
@@ -172,9 +185,9 @@
       box-shadow: 0 6px 24px rgba(0,0,0,0.18);
       text-align: left;
       font-size: 12.5px;
-      z-index: 2147483000;
+      z-index: 2147482000;
     }
-    #monitor header {
+    .page #monitor header {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -183,60 +196,97 @@
       border-bottom: 1px solid var(--line);
       font-weight: bold;
     }
-    #monitor header button { padding: 2px 8px; margin: 0; font-size: 12px; }
-    #monitor .body { padding: 8px 10px; }
-    #monitor.collapsed .body { display: none; }
-    .kv { display: flex; justify-content: space-between; gap: 8px; padding: 2px 0; }
-    .kv span:last-child { font-weight: bold; }
-    .yes { color: var(--ok); }
-    .no { color: var(--no); }
-    .pending { color: var(--warn); }
-    #log {
+    .page #monitor header button { padding: 2px 8px; margin: 0; font-size: 12px; }
+    .page #monitor .body { padding: 8px 10px; }
+    .page #monitor.collapsed .body { display: none; }
+    .page .kv { display: flex; justify-content: space-between; gap: 8px; padding: 2px 0; }
+    .page .kv span:last-child { font-weight: bold; }
+    .page .section-label {
+      margin: 10px 0 2px;
+      font-weight: bold;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-size: 10.5px;
+      letter-spacing: 0.4px;
+    }
+    .page .yes { color: var(--ok); }
+    .page .no { color: var(--no); }
+    .page .partial { color: var(--warn); }
+    .page .pending { color: var(--warn); }
+    .page #log {
       margin: 8px 0 0;
       padding: 8px;
       background: #f7f7f7;
       border-radius: 6px;
-      max-height: 200px;
+      max-height: 190px;
       overflow: auto;
       font-family: Consolas, Menlo, monospace;
       font-size: 11.5px;
       line-height: 1.5;
       white-space: pre-wrap;
     }
-    .bar {
+    .page .bar {
       height: 6px;
       background: #eee;
       border-radius: 4px;
       overflow: hidden;
       margin: 6px 0 10px;
     }
-    .bar i { display: block; height: 100%; width: 0; background: var(--accent); }
+    .page .bar i { display: block; height: 100%; width: 0; background: var(--accent); }
 
-    footer {
+    .page footer {
       max-width: 800px;
       margin: 0 auto;
       padding: 18px 0 0;
       color: var(--muted);
       font-size: 14px;
     }
-    footer a { color: var(--accent); margin: 0 8px; }
+    .page footer a { color: var(--accent); margin: 0 8px; }
 
-    .spacer { height: 40vh; }
+    .page .spacer { height: 40vh; }
+
+    /* Cookie declaration card.
+       Sits outside .page. Only the wrapper and the hand written labels are styled,
+       through dedicated classes, so nothing reaches the markup rendered by cd.js. */
+    .declaration-card {
+      box-sizing: border-box;
+      max-width: 800px;
+      margin: 0 auto 24px;
+      background: var(--card);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+    .declaration-card__title {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      font-size: 22px;
+      margin: 0 0 8px;
+    }
+    .declaration-card__note {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--muted);
+      margin: 0 0 16px;
+    }
 
     @media (max-width: 900px) {
-      #monitor { position: static; width: auto; max-width: 800px; margin: 0 auto 20px; max-height: none; }
+      .page #monitor { position: static; width: auto; max-width: 800px; margin: 0 auto 20px; max-height: none; }
     }
     @media (prefers-reduced-motion: reduce) {
-      * { scroll-behavior: auto !important; }
+      html { scroll-behavior: auto; }
+      .page * { scroll-behavior: auto !important; }
     }
-    html { scroll-behavior: smooth; }
   </style>
 </head>
 <body>
 
+<div class="page">
+
   <div class="page-head">
-    <h2>Config: data-settings-id="bfS2QDUSYLjrGw"</h2>
-    <h2>Login: tatiane.fukuda+freemum@gmail.com - Freemum</h2>
+    <h2 id="headSettings">Config: reading data-settings-id...</h2>
+    <h2>Login: tatiane.fukuda+freemium@gmail.com</h2>
+    <h2>Page CSS is scoped to .page, so the banner renders with the admin styling only.</h2>
   </div>
 
   <!-- Consent monitor, useful while scrolling and clicking -->
@@ -248,10 +298,12 @@
     <div class="body">
       <div class="kv"><span>Scroll depth</span><span id="scrollPct">0%</span></div>
       <div class="bar"><i id="scrollBar"></i></div>
+      <div class="kv"><span>UC_UI ready</span><span id="cLoaded" class="pending">unknown</span></div>
       <div class="kv"><span>Has response</span><span id="cHasResponse" class="pending">unknown</span></div>
-      <div class="kv"><span>Preferences</span><span id="cPreferences" class="pending">unknown</span></div>
-      <div class="kv"><span>Statistics</span><span id="cStatistics" class="pending">unknown</span></div>
-      <div class="kv"><span>Marketing</span><span id="cMarketing" class="pending">unknown</span></div>
+      <div class="kv"><span>Services</span><span id="cServices">0</span></div>
+      <div class="section-label">Categories</div>
+      <div id="catRows"><div class="kv"><span>waiting for UC_UI</span><span class="pending">-</span></div></div>
+      <div class="section-label">Page activity</div>
       <div class="kv"><span>Clicks recorded</span><span id="clickCount">0</span></div>
       <pre id="log" aria-live="polite">Waiting for banner events</pre>
       <button type="button" id="clearLog">Clear log</button>
@@ -271,14 +323,14 @@
 
   <div class="container" id="video">
     <h1>Youtube video</h1>
-    <p>How to setup Usercentrics Web CMP</p>
+    <p>Third party embed. The Smart Data Protector blocks it until the YouTube Video service is accepted, provided that service exists in the configuration.</p>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/SCOM3LOlcu8?si=RyStfito2I6g2uQx" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </div>
 
   <div class="container" id="maps">
     <h1>Google Maps</h1>
-    <p>Usercentrics office</p>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.73392635754!2d-9.153208024523748!3d38.72391735692244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1933005f7f7687%3A0xd3b21147262d3b0!2sUsercentrics!5e0!3m2!1sen!2spt!4v1764752558152!5m2!1sen!2spt" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Google Maps embed"></iframe>
+    <p>Usercentrics office. Blocked until the Google Maps service is accepted, again only if that service is listed in the admin interface.</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.73392635754!2d-9.153208024523748!3d38.72391735692244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1933005f7f7687%3A0xd3b21147262d3b0!2sUsercentrics!5e0!3m2!1sen!2spt!4v1764752558152!5m2!1sen!2spt" width="600" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Google Maps embed"></iframe>
   </div>
 
   <div class="container" id="actions">
@@ -287,11 +339,13 @@
 
     <h3>Banner controls</h3>
     <div class="row">
-      <button type="button" class="primary" data-cb="renew">Show banner again</button>
-      <button type="button" data-cb="show">Show</button>
-      <button type="button" data-cb="hide">Hide</button>
-      <button type="button" data-cb="withdraw">Withdraw consent</button>
-      <button type="button" data-cb="state">Read consent state</button>
+      <button type="button" class="primary" data-uc="showFirstLayer">Show first layer</button>
+      <button type="button" data-uc="showSecondLayer">Show second layer</button>
+      <button type="button" data-uc="acceptAllConsents">Accept all</button>
+      <button type="button" data-uc="denyAllConsents">Deny all</button>
+      <button type="button" data-uc="closeCMP">Close CMP</button>
+      <button type="button" data-uc="restartCMP">Restart CMP</button>
+      <button type="button" data-uc="state">Read consent state</button>
     </div>
 
     <h3>Plain page clicks</h3>
@@ -311,10 +365,10 @@
 
     <h3>Selectable tiles</h3>
     <div class="grid" id="tiles">
-      <button type="button" class="tile" aria-pressed="false" data-log="Tile Necessary"><strong>Necessary</strong><span>Always active</span></button>
-      <button type="button" class="tile" aria-pressed="false" data-log="Tile Preferences"><strong>Preferences</strong><span>Toggle test</span></button>
-      <button type="button" class="tile" aria-pressed="false" data-log="Tile Statistics"><strong>Statistics</strong><span>Toggle test</span></button>
+      <button type="button" class="tile" aria-pressed="false" data-log="Tile Essential"><strong>Essential</strong><span>Always active</span></button>
+      <button type="button" class="tile" aria-pressed="false" data-log="Tile Functional"><strong>Functional</strong><span>Toggle test</span></button>
       <button type="button" class="tile" aria-pressed="false" data-log="Tile Marketing"><strong>Marketing</strong><span>Toggle test</span></button>
+      <button type="button" class="tile" aria-pressed="false" data-log="Tile Custom"><strong>Custom</strong><span>Toggle test</span></button>
     </div>
   </div>
 
@@ -367,7 +421,7 @@
       <p>Use this panel to check whether any cookie is written before a consent decision is recorded.</p>
     </div>
     <div class="panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
-      <p>Use this panel to check whether blocked scripts run only after the matching category is accepted.</p>
+      <p>Use this panel to check whether blocked scripts run only after the matching service is accepted.</p>
     </div>
   </div>
 
@@ -375,20 +429,20 @@
     <h1>Accordion</h1>
     <p>Expanding a section grows the page, so the scroll length changes while you test.</p>
     <details>
-      <summary>What does the consent monitor show</summary>
-      <p>Scroll depth, the current consent categories reported by the banner, a click counter and a timestamped event log.</p>
+      <summary>Why does the banner look plain here</summary>
+      <p>It does not. The Usercentrics banner renders inside a shadow root, and the page stylesheet is scoped to .page on top of that, so the banner shows exactly the styling configured in the admin interface.</p>
+    </details>
+    <details>
+      <summary>Why are categories listed instead of fixed names</summary>
+      <p>Usercentrics models consent per data processing service, and the category slugs come from the configuration. The monitor groups the services returned by UC_UI.getServicesBaseInfo by categorySlug, so it shows whatever this settings ID actually has.</p>
     </details>
     <details>
       <summary>Why are the embeds blocked before consent</summary>
-      <p>The video and the map are third party embeds, so they stay blocked until the matching category is accepted.</p>
+      <p>The Smart Data Protector blocks known third party embeds by matching their source. It only works if the matching service, for example Google Maps or YouTube Video, is present in the configuration.</p>
     </details>
     <details>
       <summary>How do I bring the banner back</summary>
-      <p>Use the button in the click actions section, or the link in the footer.</p>
-    </details>
-    <details>
-      <summary>Where does the extra content appear</summary>
-      <p>Below this card, after you use the load more content button.</p>
+      <p>Use the first layer or second layer button in the click actions section, or the link in the footer.</p>
     </details>
   </div>
 
@@ -397,32 +451,45 @@
     <div id="extraBody"></div>
   </div>
 
-  <div class="container" id="declaration">
-    <h1>Cookie declaration</h1>
-    <p>Rendered by the Cookiebot declaration script for this configuration.</p>
-    <script id="CookieDeclaration" src="https://consent.cookiebot.com/556d3955-6cce-404b-b926-355d384adc1f/cd.js" type="text/javascript" async></script>
+</div><!-- /.page -->
+
+<!-- Cookie declaration, kept outside .page so cd.js renders with its own styling -->
+<div class="declaration-card" id="declaration">
+  <h1 class="declaration-card__title">Cookie declaration</h1>
+  <p class="declaration-card__note">Note: this table is served by Cookiebot for CBID 556d3955-6cce-404b-b926-355d384adc1f. It is a separate CMP and does not reflect the consent state of the Usercentrics banner above. Keep it only if you are comparing the two side by side.</p>
+  <script id="CookieDeclaration" src="https://consent.cookiebot.com/556d3955-6cce-404b-b926-355d384adc1f/cd.js" type="text/javascript" async></script>
+</div>
+
+<div class="page">
+  <div>
+    <div class="spacer" aria-hidden="true"></div>
+
+    <footer>
+      <a href="#" id="footerRenew" data-log="Footer cookie settings">Cookie settings</a>
+      <a href="#video" data-log="Footer back to video">Back to video</a>
+      <span>Test page for CMP checks</span>
+    </footer>
+
+    <dialog id="testDialog" aria-labelledby="dlgTitle">
+      <h2 id="dlgTitle" style="margin-top:0">Test dialog</h2>
+      <p>A dialog on top of the page, so you can check focus handling and stacking against the banner.</p>
+      <button type="button" class="primary" id="closeDialog">Close dialog</button>
+    </dialog>
   </div>
-
-  <div class="spacer" aria-hidden="true"></div>
-
-  <footer>
-    <a href="#" id="footerRenew" data-log="Footer cookie settings">Cookie settings</a>
-    <a href="#video" data-log="Footer back to video">Back to video</a>
-    <span>Test page for CMP checks</span>
-  </footer>
-
-  <dialog id="testDialog" aria-labelledby="dlgTitle">
-    <h2 id="dlgTitle" style="margin-top:0">Test dialog</h2>
-    <p>A dialog on top of the page, so you can check focus handling and stacking against the banner.</p>
-    <button type="button" class="primary" id="closeDialog">Close dialog</button>
-  </dialog>
+</div>
 
   <script>
     (function () {
       var logEl = document.getElementById('log');
       var clickCountEl = document.getElementById('clickCount');
+      var catRows = document.getElementById('catRows');
       var clicks = 0;
       var lines = [];
+
+      // Mirror the real settings id from the loader tag so the header cannot drift
+      var loader = document.getElementById('usercentrics-cmp');
+      document.getElementById('headSettings').textContent =
+        'Config: data-settings-id="' + (loader ? loader.getAttribute('data-settings-id') : 'not found') + '"';
 
       function stamp() {
         var d = new Date();
@@ -438,30 +505,105 @@
 
       function setFlag(id, value) {
         var el = document.getElementById(id);
+        if (!el) return;
         el.textContent = value === true ? 'yes' : value === false ? 'no' : 'unknown';
         el.className = value === true ? 'yes' : value === false ? 'no' : 'pending';
       }
 
-      function readState(source) {
-        if (typeof window.Cookiebot === 'undefined') {
-          log('Cookiebot object not available yet');
-          return;
-        }
-        var c = window.Cookiebot.consent || {};
-        setFlag('cHasResponse', !!window.Cookiebot.hasResponse);
-        setFlag('cPreferences', !!c.preferences);
-        setFlag('cStatistics', !!c.statistics);
-        setFlag('cMarketing', !!c.marketing);
-        log('state (' + source + '): response=' + !!window.Cookiebot.hasResponse +
-            ' pref=' + !!c.preferences + ' stat=' + !!c.statistics + ' mark=' + !!c.marketing);
+      function ucReady() {
+        return typeof window.UC_UI !== 'undefined' &&
+               typeof window.UC_UI.isInitialized === 'function' &&
+               window.UC_UI.isInitialized();
       }
 
-      // Global click logging
+      function renderCategories(groups) {
+        var slugs = Object.keys(groups).sort();
+        if (!slugs.length) {
+          catRows.innerHTML = '<div class="kv"><span>no services returned</span><span class="pending">-</span></div>';
+          return;
+        }
+        catRows.innerHTML = '';
+        slugs.forEach(function (slug) {
+          var g = groups[slug];
+          var cls = g.granted === g.total ? 'yes' : g.granted === 0 ? 'no' : 'partial';
+          var text = g.granted === g.total ? 'yes' : g.granted === 0 ? 'no' : g.granted + '/' + g.total;
+          var row = document.createElement('div');
+          row.className = 'kv';
+          var a = document.createElement('span');
+          a.textContent = slug;
+          var b = document.createElement('span');
+          b.className = cls;
+          b.textContent = text;
+          row.appendChild(a);
+          row.appendChild(b);
+          catRows.appendChild(row);
+        });
+      }
+
+      function readState(source) {
+        if (!ucReady()) {
+          setFlag('cLoaded', false);
+          log('UC_UI not initialised yet (' + source + ')');
+          return;
+        }
+        setFlag('cLoaded', true);
+
+        var services = [];
+        try {
+          services = window.UC_UI.getServicesBaseInfo() || [];
+        } catch (err) {
+          log('getServicesBaseInfo() failed: ' + err.message);
+          return;
+        }
+
+        document.getElementById('cServices').textContent = services.length;
+
+        // A decision was recorded if any service carries consent history
+        var decided = services.some(function (s) {
+          return s.consent && Array.isArray(s.consent.history) && s.consent.history.length > 0;
+        });
+        setFlag('cHasResponse', decided);
+
+        var groups = {};
+        services.forEach(function (s) {
+          var slug = s.categorySlug || 'uncategorised';
+          if (!groups[slug]) groups[slug] = { total: 0, granted: 0 };
+          groups[slug].total++;
+          if (s.consent && s.consent.status === true) groups[slug].granted++;
+        });
+        renderCategories(groups);
+
+        var summary = Object.keys(groups).sort().map(function (k) {
+          return k + '=' + groups[k].granted + '/' + groups[k].total;
+        }).join(' ');
+        log('state (' + source + '): decided=' + decided + ' services=' + services.length + ' ' + summary);
+      }
+
+      // Wait for UC_UI instead of giving up after one try
+      var waited = 0;
+      var waitTimer = setInterval(function () {
+        if (ucReady()) {
+          clearInterval(waitTimer);
+          log('UC_UI initialised after roughly ' + waited + 'ms');
+          readState('detect');
+          return;
+        }
+        waited += 250;
+        if (waited >= 10000) {
+          clearInterval(waitTimer);
+          setFlag('cLoaded', false);
+          log('UC_UI did not initialise within 10s. Check the settings id and the domain allow list.');
+        }
+      }, 250);
+
+      // Global click logging, page controls only.
+      // Clicks inside the banner retarget to #usercentrics-root, so they are filtered out.
       document.addEventListener('click', function (e) {
-        var target = e.target.closest('[data-log], [data-cb], a, button, summary, input, select');
+        if (e.target.closest && e.target.closest('#usercentrics-root, #CookiebotDeclaration')) return;
+        var target = e.target.closest('[data-log], [data-uc], a, button, summary, input, select');
         if (!target) return;
         var name = target.getAttribute('data-log') ||
-                   target.getAttribute('data-cb') ||
+                   target.getAttribute('data-uc') ||
                    (target.textContent || '').trim().slice(0, 40) ||
                    target.tagName.toLowerCase();
         clicks++;
@@ -472,6 +614,7 @@
       document.addEventListener('change', function (e) {
         var t = e.target;
         if (!t.getAttribute) return;
+        if (t.closest && t.closest('#usercentrics-root, #CookiebotDeclaration')) return;
         var name = t.getAttribute('data-log') || t.id || t.tagName.toLowerCase();
         var value = t.type === 'checkbox' || t.type === 'radio' ? t.checked : t.value;
         log('change: ' + name + ' = ' + value);
@@ -500,26 +643,40 @@
       onScroll();
 
       // Banner controls
-      document.querySelectorAll('[data-cb]').forEach(function (btn) {
+      document.querySelectorAll('[data-uc]').forEach(function (btn) {
         btn.addEventListener('click', function () {
-          var action = btn.getAttribute('data-cb');
-          if (typeof window.Cookiebot === 'undefined') {
-            log('Cookiebot object not available, cannot run ' + action);
+          var action = btn.getAttribute('data-uc');
+          if (action === 'state') { readState('manual'); return; }
+          if (typeof window.UC_UI === 'undefined') {
+            log('UC_UI not available, cannot run ' + action);
             return;
           }
-          if (action === 'state') { readState('manual'); return; }
+          if (typeof window.UC_UI[action] !== 'function') {
+            log('UC_UI.' + action + '() is not a function on this CMP version');
+            return;
+          }
           try {
-            window.Cookiebot[action]();
-            log('called Cookiebot.' + action + '()');
+            var out = window.UC_UI[action]();
+            log('called UC_UI.' + action + '()');
+            if (out && typeof out.then === 'function') {
+              out.then(function () { readState('after ' + action); })
+                 .catch(function (err) { log('UC_UI.' + action + '() rejected: ' + err); });
+            } else {
+              setTimeout(function () { readState('after ' + action); }, 300);
+            }
           } catch (err) {
-            log('error calling Cookiebot.' + action + '(): ' + err.message);
+            log('error calling UC_UI.' + action + '(): ' + err.message);
           }
         });
       });
 
       document.getElementById('footerRenew').addEventListener('click', function (e) {
         e.preventDefault();
-        if (window.Cookiebot) window.Cookiebot.renew();
+        if (window.UC_UI && typeof window.UC_UI.showSecondLayer === 'function') {
+          window.UC_UI.showSecondLayer();
+        } else {
+          log('UC_UI.showSecondLayer() not available');
+        }
       });
 
       // Monitor collapse
@@ -597,17 +754,31 @@
         log('form reset');
       });
 
-      // Cookiebot events
-      ['CookiebotOnLoad', 'CookiebotOnDialogInit', 'CookiebotOnDialogDisplay',
-       'CookiebotOnAccept', 'CookiebotOnDecline', 'CookiebotOnTagsExecuted'].forEach(function (evt) {
-        window.addEventListener(evt, function () {
-          log('event: ' + evt);
-          readState(evt);
-        });
+      // Usercentrics events
+      window.addEventListener('UC_UI_INITIALIZED', function () {
+        log('event: UC_UI_INITIALIZED');
+        readState('UC_UI_INITIALIZED');
+      });
+
+      window.addEventListener('UC_UI_CMP_EVENT', function (e) {
+        var d = e.detail || {};
+        log('event: UC_UI_CMP_EVENT type=' + (d.type || 'unknown') +
+            (d.source ? ' source=' + d.source : ''));
+        setTimeout(function () { readState('UC_UI_CMP_EVENT'); }, 200);
+      });
+
+      window.addEventListener('UC_UI_VIEW_CHANGED', function (e) {
+        var d = e.detail || {};
+        log('event: UC_UI_VIEW_CHANGED view=' + (d.view || 'unknown'));
+      });
+
+      window.addEventListener('UC_SDK_EVENT', function (e) {
+        var d = e.detail || {};
+        log('event: UC_SDK_EVENT ' + (d.type || ''));
       });
 
       window.addEventListener('load', function () {
-        setTimeout(function () { readState('page load'); }, 400);
+        setTimeout(function () { readState('page load'); }, 600);
       });
 
       log('page ready');
