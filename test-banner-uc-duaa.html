@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test Page tatiane.fukuda+freemium@gmail.com - Usercentrics Web CMP</title>
+
+  <!-- Start cookie banner (Usercentrics Web CMP) -->   
+  <script id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-settings-id="frnmmY7SgjwpwS" async></script>
+  <!--
+    STYLE ISOLATION CONTRACT
+    The banner renders inside a shadow root under #usercentrics-root, a direct child of
+    <body>. Shadow DOM blocks page selectors, but two things still cross the boundary:
+      1. inherited properties (font-family, color, line-height, letter-spacing,
+         text-align, scroll-behavior, visibility, cursor, word-spacing)
+      2. CSS custom properties declared on :root or html or body
+
+    So this stylesheet obeys three rules:
+      A. html and body declare NO inherited property. body carries background, margin
+         and padding only. Anchor smoothing is done in JS, not with scroll-behavior.
+      B. All custom properties live on .page, never on :root.
+      C. Every selector is scoped to .page. No bare element selectors, and no selector
+         ever names #usercentrics-root or anything inside it.
+
+    Result: the banner inherits nothing but browser defaults and renders exactly as
+    configured in the Usercentrics admin interface. Use the "Inspect banner styles"
+    button in the consent monitor to verify this at runtime.
+  -->
+  <style>
+    /* Rule A: nothing inheritable above the banner host */
+    body {
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px 20px 120px;
+    }
+
+    /* Rule B: custom properties scoped to the page, not :root */
+    .page {
+      --bg: #f4f4f4;
+      --card: #ffffff;
+      --ink: #333;
+      --muted: #666;
+      --line: #e3e3e3;
+      --accent: #0b6ea8;
+      --ok: #1e7a45;
+      --warn: #a8570b;
+      --no: #a32222;
+
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      text-align: center;
+    }
+    .page, .page * { box-sizing: border-box; }
+
+    .page .container {
+      max-width: 800px;
+      margin: 0 auto 24px;
+      background: var(--card);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+
+    .page .container h1 { font-size: 22px; margin-top: 0; }
+    .page .container p { color: var(--muted); }
+
+    .page iframe {
+      width: 100%;
+      height: 450px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .page .page-head { max-width: 800px; margin: 0 auto 24px; }
+    .page .page-head h2 { color: #555; font-size: 16px; font-weight: normal; margin: 4px 0; }
+
+    /* In page navigation */
+    .page nav.jump {
+      max-width: 800px;
+      margin: 0 auto 24px;
+      background: var(--card);
+      border-radius: 12px;
+      padding: 14px 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+    .page nav.jump a {
+      display: inline-block;
+      margin: 4px 12px 4px 0;
+      color: var(--accent);
+    }
+
+    /* Buttons */
+    .page button, .page .btn {
+      font: inherit;
+      cursor: pointer;
+      background: #fff;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 4px 6px 4px 0;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+    }
+    .page button:hover, .page .btn:hover { border-color: var(--accent); color: var(--accent); }
+    .page button:focus-visible, .page .btn:focus-visible, .page a:focus-visible,
+    .page input:focus-visible, .page select:focus-visible, .page textarea:focus-visible,
+    .page summary:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .page button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .page button.primary:hover { background: #095883; color: #fff; }
+
+    .page .row { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+
+    /* Form fields */
+    .page label.field { display: block; margin: 12px 0 4px; font-size: 14px; }
+    .page input[type="text"], .page input[type="email"], .page select, .page textarea {
+      font: inherit;
+      width: 100%;
+      max-width: 360px;
+      padding: 9px 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .page .checks label { display: block; margin: 8px 0; font-size: 15px; }
+
+    /* Tabs */
+    .page .tabs { display: flex; gap: 6px; border-bottom: 1px solid var(--line); margin-bottom: 14px; flex-wrap: wrap; }
+    .page .tabs button {
+      border: none;
+      border-bottom: 3px solid transparent;
+      border-radius: 0;
+      box-shadow: none;
+      margin: 0;
+      padding: 10px 12px;
+      color: var(--muted);
+    }
+    .page .tabs button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); font-weight: bold; }
+    .page .panel[hidden] { display: none; }
+
+    /* Accordion */
+    .page details {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 10px;
+      background: #fcfcfc;
+    }
+    .page summary { cursor: pointer; font-weight: bold; }
+    .page details p { margin-bottom: 0; }
+
+    /* Cards grid */
+    .page .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+    .page .tile {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px;
+      background: #fcfcfc;
+      cursor: pointer;
+      text-align: left;
+      box-shadow: none;
+      margin: 0;
+    }
+    .page .tile[aria-pressed="true"] { border-color: var(--accent); background: #eef6fb; }
+    .page .tile strong { display: block; margin-bottom: 4px; }
+    .page .tile span { font-size: 13px; color: var(--muted); }
+
+    /* Services table */
+    .page table.dps {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .page table.dps th, .page table.dps td {
+      text-align: left;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .page table.dps th { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.4px; }
+    .page table.dps td.status-yes { color: var(--ok); font-weight: bold; }
+    .page table.dps td.status-no { color: var(--no); font-weight: bold; }
+    .page table.dps td.status-essential { color: var(--muted); font-weight: bold; }
+
+    /* Modal */
+    .page dialog {
+      border: none;
+      border-radius: 12px;
+      padding: 22px;
+      max-width: 420px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    }
+    .page dialog::backdrop { background: rgba(0,0,0,0.45); }
+
+    /* Consent monitor */
+    .page #monitor {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      width: 280px;
+      max-height: 80vh;
+      overflow: auto;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+      text-align: left;
+      font-size: 12.5px;
+      z-index: 2147482000;
+    }
+    .page #monitor header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      font-weight: bold;
+    }
+    .page #monitor header button { padding: 2px 8px; margin: 0; font-size: 12px; }
+    .page #monitor .body { padding: 8px 10px; }
+    .page #monitor .body button { padding: 4px 8px; font-size: 11.5px; }
+    .page #monitor.collapsed .body { display: none; }
+    .page .kv { display: flex; justify-content: space-between; gap: 8px; padding: 2px 0; }
+    .page .kv span:last-child { font-weight: bold; }
+    .page .section-label {
+      margin: 10px 0 2px;
+      font-weight: bold;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-size: 10.5px;
+      letter-spacing: 0.4px;
+    }
+    .page .yes { color: var(--ok); }
+    .page .no { color: var(--no); }
+    .page .partial { color: var(--warn); }
+    .page .pending { color: var(--warn); }
+    .page #log {
+      margin: 8px 0 0;
+      padding: 8px;
+      background: #f7f7f7;
+      border-radius: 6px;
+      max-height: 190px;
+      overflow: auto;
+      font-family: Consolas, Menlo, monospace;
+      font-size: 11.5px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+    .page .bar {
+      height: 6px;
+      background: #eee;
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 6px 0 10px;
+    }
+    .page .bar i { display: block; height: 100%; width: 0; background: var(--accent); }
+
+    .page footer {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 18px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .page footer a { color: var(--accent); margin: 0 8px; }
+
+    .page .spacer { height: 40vh; }
+
+    @media (max-width: 900px) {
+      .page #monitor { position: static; width: auto; max-width: 800px; margin: 0 auto 20px; max-height: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="page-head">
+    <h2 id="headSettings">Config: reading data-settings-id...</h2>
+    <h2 id="headLoader">Loader: reading src...</h2>
+    <h2>Login: tatiane.fukuda+freemium@gmail.com</h2>
+  </div>
+
+  <!-- Consent monitor -->
+  <section id="monitor" aria-label="Consent monitor">
+    <header>
+      <span>Consent monitor</span>
+      <button type="button" id="monitorToggle" aria-expanded="true">Hide</button>
+    </header>
+    <div class="body">
+      <div class="kv"><span>Scroll depth</span><span id="scrollPct">0%</span></div>
+      <div class="bar"><i id="scrollBar"></i></div>
+      <div class="kv"><span>UC_UI ready</span><span id="cLoaded" class="pending">unknown</span></div>
+      <div class="kv"><span>Has response</span><span id="cHasResponse" class="pending">unknown</span></div>
+      <div class="kv"><span>Services</span><span id="cServices">0</span></div>
+      <div class="section-label">Categories</div>
+      <div id="catRows"><div class="kv"><span>waiting for UC_UI</span><span class="pending">-</span></div></div>
+      <div class="section-label">Style isolation</div>
+      <div class="kv"><span>Shadow root</span><span id="cShadow" class="pending">unknown</span></div>
+      <button type="button" id="inspectStyles">Inspect banner styles</button>
+      <div class="section-label">Page activity</div>
+      <div class="kv"><span>Clicks recorded</span><span id="clickCount">0</span></div>
+      <pre id="log" aria-live="polite">Waiting for banner events</pre>
+      <button type="button" id="clearLog">Clear log</button>
+    </div>
+  </section>
+
+  <nav class="jump" aria-label="Jump to section">
+    <strong>Jump to:</strong>
+    <a href="#video">Video</a>
+    <a href="#maps">Maps</a>
+    <a href="#actions">Click actions</a>
+    <a href="#form">Form</a>
+    <a href="#tabs">Tabs</a>
+    <a href="#faq">Accordion</a>
+    <a href="#services">Services</a>
+  </nav>
+
+  <div class="container" id="video">
+    <h1>Youtube video</h1>
+    <p>Third party embed. The Smart Data Protector blocks it until the YouTube Video service is accepted, provided that service exists in this configuration.</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/SCOM3LOlcu8?si=RyStfito2I6g2uQx" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+
+  <div class="container" id="maps">
+    <h1>Google Maps</h1>
+    <p>Usercentrics office. Blocked until the Google Maps service is accepted, again only if that service is listed in the admin interface.</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.73392635754!2d-9.153208024523748!3d38.72391735692244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1933005f7f7687%3A0xd3b21147262d3b0!2sUsercentrics!5e0!3m2!1sen!2spt!4v1764752558152!5m2!1sen!2spt" width="600" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Google Maps embed"></iframe>
+  </div>
+
+  <div class="container" id="actions">
+    <h1>Click actions</h1>
+    <p>Every click below is written to the consent monitor log with a timestamp, so you can check what the banner does while you interact with the page.</p>
+
+    <h3>Banner controls</h3>
+    <div class="row">
+      <button type="button" class="primary" data-uc="showFirstLayer">Show first layer</button>
+      <button type="button" data-uc="showSecondLayer">Show second layer</button>
+      <button type="button" data-uc="acceptAllConsents">Accept all</button>
+      <button type="button" data-uc="denyAllConsents">Deny all</button>
+      <button type="button" data-uc="closeCMP">Close CMP</button>
+      <button type="button" data-uc="restartCMP">Restart CMP</button>
+      <button type="button" data-uc="state">Read consent state</button>
+    </div>
+
+    <h3>Plain page clicks</h3>
+    <div class="row">
+      <button type="button" data-log="Counter button">Counter</button>
+      <button type="button" data-log="Load more content" id="loadMore">Load more content</button>
+      <button type="button" data-log="Open dialog" id="openDialog">Open dialog</button>
+      <button type="button" data-log="Scroll to top" id="toTop">Back to top</button>
+    </div>
+
+    <h3>Links</h3>
+    <div class="row">
+      <a class="btn" href="#services" data-log="Internal anchor link">Internal link</a>
+      <a class="btn" href="https://usercentrics.com" target="_blank" rel="noopener" data-log="External link new tab">External link</a>
+      <a class="btn" href="javascript:void(0)" data-log="Inert link">Inert link</a>
+    </div>
+
+    <h3>Selectable tiles</h3>
+    <div class="grid" id="tiles">
+      <button type="button" class="tile" aria-pressed="false" data-log="Tile A"><strong>Tile A</strong><span>Toggle test</span></button>
+      <button type="button" class="tile" aria-pressed="false" data-log="Tile B"><strong>Tile B</strong><span>Toggle test</span></button>
+      <button type="button" class="tile" aria-pressed="false" data-log="Tile C"><strong>Tile C</strong><span>Toggle test</span></button>
+      <button type="button" class="tile" aria-pressed="false" data-log="Tile D"><strong>Tile D</strong><span>Toggle test</span></button>
+    </div>
+  </div>
+
+  <div class="container" id="form">
+    <h1>Form fields</h1>
+    <p>Fields for keyboard focus order checks and for clicking while the banner is open.</p>
+
+    <label class="field" for="fname">Full name</label>
+    <input type="text" id="fname" data-log="Name field" placeholder="Type a name">
+
+    <label class="field" for="femail">Email</label>
+    <input type="email" id="femail" data-log="Email field" placeholder="name@example.com">
+
+    <label class="field" for="fcountry">Country</label>
+    <select id="fcountry" data-log="Country select">
+      <option>Portugal</option>
+      <option>Germany</option>
+      <option>France</option>
+      <option>United States</option>
+    </select>
+
+    <div class="checks">
+      <label><input type="checkbox" data-log="Checkbox newsletter"> Send me the newsletter</label>
+      <label><input type="checkbox" data-log="Checkbox terms"> I accept the terms</label>
+      <label><input type="radio" name="plan" data-log="Radio free"> Free plan</label>
+      <label><input type="radio" name="plan" data-log="Radio paid"> Paid plan</label>
+    </div>
+
+    <label class="field" for="fmsg">Message</label>
+    <textarea id="fmsg" rows="3" data-log="Message field" placeholder="Write something"></textarea>
+
+    <div class="row" style="margin-top:14px">
+      <button type="button" class="primary" data-log="Save changes">Save changes</button>
+      <button type="button" data-log="Reset form" id="resetForm">Reset form</button>
+    </div>
+  </div>
+
+  <div class="container" id="tabs">
+    <h1>Tabs</h1>
+    <p>Click each tab to swap the panel below it.</p>
+    <div class="tabs" role="tablist" aria-label="Test tabs">
+      <button type="button" role="tab" aria-selected="true" aria-controls="p1" id="t1">Overview</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="p2" id="t2">Cookies</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="p3" id="t3">Scripts</button>
+    </div>
+    <div class="panel" role="tabpanel" id="p1" aria-labelledby="t1">
+      <p>This panel is visible by default. Switching tabs does not reload the page, so the banner should stay in the same state.</p>
+    </div>
+    <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+      <p>Use this panel to check whether any cookie is written before a consent decision is recorded.</p>
+    </div>
+    <div class="panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+      <p>Use this panel to check whether blocked scripts run only after the matching service is accepted.</p>
+    </div>
+  </div>
+
+  <div class="container" id="faq">
+    <h1>Accordion</h1>
+    <p>Expanding a section grows the page, so the scroll length changes while you test.</p>
+    <details>
+      <summary>How do I know the page is not styling the banner</summary>
+      <p>Open the consent monitor and use Inspect banner styles. It reads the computed background and text colour of every button inside the shadow root and prints them in the log, together with the font the host inherits from the page. Compare those values with the admin configuration.</p>
+    </details>
+    <details>
+      <summary>What exactly is isolated</summary>
+      <p>Shadow DOM already blocks page selectors. On top of that, html and body declare no inherited property, all custom properties live on .page instead of :root, and no selector names the banner host. So the banner inherits browser defaults only.</p>
+    </details>
+    <details>
+      <summary>Why are categories listed instead of fixed names</summary>
+      <p>Usercentrics models consent per data processing service, and category slugs come from the configuration. The monitor groups the services returned by getServicesBaseInfo by categorySlug, so it shows whatever this settings id actually has.</p>
+    </details>
+    <details>
+      <summary>Why are the embeds blocked before consent</summary>
+      <p>The Smart Data Protector blocks known third party embeds by matching their source. It only works if the matching service, for example Google Maps or YouTube Video, is present in the configuration.</p>
+    </details>
+  </div>
+
+  <div class="container" id="services">
+    <h1>Data processing services</h1>
+    <p>Built from UC_UI.getServicesBaseInfo, so it always matches the settings id this page is loading. Use Load full info to fetch cookie details from the aggregator.</p>
+    <div class="row">
+      <button type="button" id="refreshDps">Refresh</button>
+      <button type="button" id="fullDps">Load full info</button>
+    </div>
+    <div id="dpsWrap"><p>Waiting for UC_UI.</p></div>
+  </div>
+
+  <div class="container" id="extra" hidden>
+    <h1>Extra content</h1>
+    <div id="extraBody"></div>
+  </div>
+
+  <div class="spacer" aria-hidden="true"></div>
+
+  <footer>
+    <a href="#" id="footerRenew" data-log="Footer privacy settings">Privacy settings</a>
+    <a href="#video" data-log="Footer back to video">Back to video</a>
+    <span>Test page for CMP checks</span>
+  </footer>
+
+  <dialog id="testDialog" aria-labelledby="dlgTitle">
+    <h2 id="dlgTitle" style="margin-top:0">Test dialog</h2>
+    <p>A dialog on top of the page, so you can check focus handling and stacking against the banner.</p>
+    <button type="button" class="primary" id="closeDialog">Close dialog</button>
+  </dialog>
+
+</div><!-- /.page -->
+
+  <script>
+    (function () {
+      var logEl = document.getElementById('log');
+      var clickCountEl = document.getElementById('clickCount');
+      var catRows = document.getElementById('catRows');
+      var dpsWrap = document.getElementById('dpsWrap');
+      var clicks = 0;
+      var lines = [];
+
+      // Mirror the real loader config so the header can never drift from the script tag
+      var loader = document.getElementById('usercentrics-cmp');
+      document.getElementById('headSettings').textContent =
+        'Config: data-settings-id="' + (loader ? loader.getAttribute('data-settings-id') : 'not found') + '"';
+      document.getElementById('headLoader').textContent =
+        'Loader: ' + (loader ? loader.getAttribute('src') : 'not found');
+
+      function stamp() {
+        var d = new Date();
+        return d.toTimeString().slice(0, 8) + '.' + String(d.getMilliseconds()).padStart(3, '0');
+      }
+
+      function log(msg) {
+        lines.push(stamp() + '  ' + msg);
+        if (lines.length > 160) lines.shift();
+        logEl.textContent = lines.join('\n');
+        logEl.scrollTop = logEl.scrollHeight;
+      }
+
+      function setFlag(id, value) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.textContent = value === true ? 'yes' : value === false ? 'no' : 'unknown';
+        el.className = value === true ? 'yes' : value === false ? 'no' : 'pending';
+      }
+
+      function ucReady() {
+        return typeof window.UC_UI !== 'undefined' &&
+               typeof window.UC_UI.isInitialized === 'function' &&
+               window.UC_UI.isInitialized();
+      }
+
+      function getServices() {
+        try {
+          return window.UC_UI.getServicesBaseInfo() || [];
+        } catch (err) {
+          log('getServicesBaseInfo() failed: ' + err.message);
+          return [];
+        }
+      }
+
+      // ---------- consent state ----------
+
+      function renderCategories(groups) {
+        var slugs = Object.keys(groups).sort();
+        if (!slugs.length) {
+          catRows.textContent = '';
+          var empty = document.createElement('div');
+          empty.className = 'kv';
+          empty.innerHTML = '<span>no services returned</span><span class="pending">-</span>';
+          catRows.appendChild(empty);
+          return;
+        }
+        catRows.textContent = '';
+        slugs.forEach(function (slug) {
+          var g = groups[slug];
+          var cls = g.granted === g.total ? 'yes' : g.granted === 0 ? 'no' : 'partial';
+          var text = g.granted === g.total ? 'yes' : g.granted === 0 ? 'no' : g.granted + '/' + g.total;
+          var row = document.createElement('div');
+          row.className = 'kv';
+          var a = document.createElement('span');
+          a.textContent = slug;
+          var b = document.createElement('span');
+          b.className = cls;
+          b.textContent = text;
+          row.appendChild(a);
+          row.appendChild(b);
+          catRows.appendChild(row);
+        });
+      }
+
+      function readState(source) {
+        if (!ucReady()) {
+          setFlag('cLoaded', false);
+          log('UC_UI not initialised yet (' + source + ')');
+          return;
+        }
+        setFlag('cLoaded', true);
+
+        var services = getServices();
+        document.getElementById('cServices').textContent = services.length;
+
+        var decided = services.some(function (s) {
+          return s.consent && Array.isArray(s.consent.history) && s.consent.history.length > 0;
+        });
+        setFlag('cHasResponse', decided);
+
+        var groups = {};
+        services.forEach(function (s) {
+          var slug = s.categorySlug || 'uncategorised';
+          if (!groups[slug]) groups[slug] = { total: 0, granted: 0 };
+          groups[slug].total++;
+          if (s.consent && s.consent.status === true) groups[slug].granted++;
+        });
+        renderCategories(groups);
+        renderDps(services);
+
+        var summary = Object.keys(groups).sort().map(function (k) {
+          return k + '=' + groups[k].granted + '/' + groups[k].total;
+        }).join(' ');
+        log('state (' + source + '): decided=' + decided + ' services=' + services.length + ' ' + summary);
+      }
+
+      // ---------- services table ----------
+
+      function renderDps(services) {
+        dpsWrap.textContent = '';
+        if (!services.length) {
+          var p = document.createElement('p');
+          p.textContent = 'No services returned for this settings id.';
+          dpsWrap.appendChild(p);
+          return;
+        }
+        var table = document.createElement('table');
+        table.className = 'dps';
+        var thead = document.createElement('thead');
+        thead.innerHTML = '<tr><th>Service</th><th>Category</th><th>Consent</th></tr>';
+        table.appendChild(thead);
+        var tbody = document.createElement('tbody');
+
+        services.slice().sort(function (a, b) {
+          var ka = (a.categorySlug || '') + (a.name || '');
+          var kb = (b.categorySlug || '') + (b.name || '');
+          return ka.localeCompare(kb);
+        }).forEach(function (s) {
+          var tr = document.createElement('tr');
+
+          var tdName = document.createElement('td');
+          tdName.textContent = s.name || s.id || 'unnamed';
+          tr.appendChild(tdName);
+
+          var tdCat = document.createElement('td');
+          tdCat.textContent = s.categorySlug || 'uncategorised';
+          tr.appendChild(tdCat);
+
+          var tdStatus = document.createElement('td');
+          var essential = s.isEssential === true || s.essential === true;
+          if (essential) {
+            tdStatus.textContent = 'essential';
+            tdStatus.className = 'status-essential';
+          } else if (s.consent && s.consent.status === true) {
+            tdStatus.textContent = 'granted';
+            tdStatus.className = 'status-yes';
+          } else {
+            tdStatus.textContent = 'denied';
+            tdStatus.className = 'status-no';
+          }
+          tr.appendChild(tdStatus);
+
+          tbody.appendChild(tr);
+        });
+
+        table.appendChild(tbody);
+        dpsWrap.appendChild(table);
+      }
+
+      document.getElementById('refreshDps').addEventListener('click', function () {
+        if (!ucReady()) { log('UC_UI not ready, cannot refresh services'); return; }
+        renderDps(getServices());
+        log('services table refreshed');
+      });
+
+      document.getElementById('fullDps').addEventListener('click', function () {
+        if (!ucReady() || typeof window.UC_UI.getServicesFullInfo !== 'function') {
+          log('getServicesFullInfo() not available');
+          return;
+        }
+        log('fetching full service info from the aggregator');
+        Promise.resolve(window.UC_UI.getServicesFullInfo()).then(function (full) {
+          if (!Array.isArray(full)) { log('unexpected full info shape'); return; }
+          var withCookies = 0;
+          full.forEach(function (s) {
+            var count = Array.isArray(s.cookies) ? s.cookies.length
+                      : Array.isArray(s.deviceStorage) ? s.deviceStorage.length : 0;
+            if (count) withCookies++;
+          });
+          log('full info: ' + full.length + ' services, ' + withCookies + ' declare storage entries');
+          console.log('Usercentrics full service info', full);
+          log('full payload written to the browser console');
+        }).catch(function (err) {
+          log('getServicesFullInfo() rejected: ' + err);
+        });
+      });
+
+      // ---------- style isolation check ----------
+
+      function bannerHost() {
+        return document.getElementById('usercentrics-root');
+      }
+
+      function updateShadowFlag() {
+        var host = bannerHost();
+        setFlag('cShadow', !!(host && host.shadowRoot));
+      }
+
+      document.getElementById('inspectStyles').addEventListener('click', function () {
+        var host = bannerHost();
+        if (!host) { log('#usercentrics-root not in the DOM yet'); return; }
+
+        var hostStyle = getComputedStyle(host);
+        log('host inherits: font=' + hostStyle.fontFamily.split(',')[0] +
+            ' color=' + hostStyle.color +
+            ' text-align=' + hostStyle.textAlign);
+
+        var root = host.shadowRoot;
+        if (!root) {
+          log('no open shadow root, the banner may still be loading');
+          return;
+        }
+
+        var btns = root.querySelectorAll('button');
+        if (!btns.length) { log('no buttons found in the shadow root, open the banner first'); return; }
+
+        log('buttons inside the shadow root: ' + btns.length);
+        Array.prototype.slice.call(btns, 0, 8).forEach(function (b) {
+          var cs = getComputedStyle(b);
+          var label = (b.textContent || '').trim().slice(0, 22) || b.getAttribute('aria-label') || 'unlabelled';
+          log('  "' + label + '" bg=' + cs.backgroundColor + ' fg=' + cs.color);
+        });
+        log('these values come from the shadow root, page CSS cannot reach them');
+      });
+
+      // ---------- waiting for UC_UI ----------
+
+      var waited = 0;
+      var waitTimer = setInterval(function () {
+        updateShadowFlag();
+        if (ucReady()) {
+          clearInterval(waitTimer);
+          log('UC_UI initialised after roughly ' + waited + 'ms');
+          readState('detect');
+          return;
+        }
+        waited += 250;
+        if (waited >= 10000) {
+          clearInterval(waitTimer);
+          setFlag('cLoaded', false);
+          log('UC_UI did not initialise within 10s. Check the settings id, the loader host and the domain allow list.');
+        }
+      }, 250);
+
+      // ---------- page instrumentation ----------
+
+      document.addEventListener('click', function (e) {
+        if (e.target.closest && e.target.closest('#usercentrics-root')) return;
+        var target = e.target.closest('[data-log], [data-uc], a, button, summary, input, select');
+        if (!target) return;
+        var name = target.getAttribute('data-log') ||
+                   target.getAttribute('data-uc') ||
+                   (target.textContent || '').trim().slice(0, 40) ||
+                   target.tagName.toLowerCase();
+        clicks++;
+        clickCountEl.textContent = clicks;
+        log('click: ' + name);
+      }, true);
+
+      document.addEventListener('change', function (e) {
+        var t = e.target;
+        if (!t.getAttribute) return;
+        if (t.closest && t.closest('#usercentrics-root')) return;
+        var name = t.getAttribute('data-log') || t.id || t.tagName.toLowerCase();
+        var value = t.type === 'checkbox' || t.type === 'radio' ? t.checked : t.value;
+        log('change: ' + name + ' = ' + value);
+      });
+
+      // Smooth anchors in JS, so no scroll-behavior is inherited by the banner
+      document.querySelectorAll('.page a[href^="#"]').forEach(function (a) {
+        var href = a.getAttribute('href');
+        if (href === '#') return;
+        a.addEventListener('click', function (e) {
+          var el = document.querySelector(href);
+          if (!el) return;
+          e.preventDefault();
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+
+      // Scroll depth
+      var pctEl = document.getElementById('scrollPct');
+      var barEl = document.getElementById('scrollBar');
+      var marks = { 25: false, 50: false, 75: false, 100: false };
+      function onScroll() {
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - window.innerHeight;
+        var pct = max > 0 ? Math.round((window.scrollY / max) * 100) : 0;
+        pct = Math.max(0, Math.min(100, pct));
+        pctEl.textContent = pct + '%';
+        barEl.style.width = pct + '%';
+        Object.keys(marks).forEach(function (m) {
+          if (!marks[m] && pct >= Number(m)) {
+            marks[m] = true;
+            log('scroll depth reached ' + m + '%');
+          }
+        });
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      onScroll();
+
+      // Banner controls
+      document.querySelectorAll('[data-uc]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var action = btn.getAttribute('data-uc');
+          if (action === 'state') { readState('manual'); return; }
+          if (typeof window.UC_UI === 'undefined') {
+            log('UC_UI not available, cannot run ' + action);
+            return;
+          }
+          if (typeof window.UC_UI[action] !== 'function') {
+            log('UC_UI.' + action + '() is not a function on this CMP version');
+            return;
+          }
+          try {
+            var out = window.UC_UI[action]();
+            log('called UC_UI.' + action + '()');
+            if (out && typeof out.then === 'function') {
+              out.then(function () { readState('after ' + action); })
+                 .catch(function (err) { log('UC_UI.' + action + '() rejected: ' + err); });
+            } else {
+              setTimeout(function () { readState('after ' + action); }, 300);
+            }
+          } catch (err) {
+            log('error calling UC_UI.' + action + '(): ' + err.message);
+          }
+        });
+      });
+
+      document.getElementById('footerRenew').addEventListener('click', function (e) {
+        e.preventDefault();
+        if (window.UC_UI && typeof window.UC_UI.showSecondLayer === 'function') {
+          window.UC_UI.showSecondLayer();
+        } else {
+          log('UC_UI.showSecondLayer() not available');
+        }
+      });
+
+      // Monitor collapse
+      var monitor = document.getElementById('monitor');
+      var toggle = document.getElementById('monitorToggle');
+      toggle.addEventListener('click', function () {
+        var collapsed = monitor.classList.toggle('collapsed');
+        toggle.textContent = collapsed ? 'Show' : 'Hide';
+        toggle.setAttribute('aria-expanded', String(!collapsed));
+      });
+
+      document.getElementById('clearLog').addEventListener('click', function () {
+        lines = [];
+        logEl.textContent = 'Log cleared';
+      });
+
+      // Tiles
+      document.querySelectorAll('.tile').forEach(function (tile) {
+        tile.addEventListener('click', function () {
+          var pressed = tile.getAttribute('aria-pressed') === 'true';
+          tile.setAttribute('aria-pressed', String(!pressed));
+        });
+      });
+
+      // Tabs
+      var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          tabs.forEach(function (t) {
+            var selected = t === tab;
+            t.setAttribute('aria-selected', String(selected));
+            document.getElementById(t.getAttribute('aria-controls')).hidden = !selected;
+          });
+        });
+      });
+
+      // Load more content
+      var extra = document.getElementById('extra');
+      var extraBody = document.getElementById('extraBody');
+      var blocks = 0;
+      document.getElementById('loadMore').addEventListener('click', function () {
+        extra.hidden = false;
+        blocks++;
+        var p = document.createElement('p');
+        p.textContent = 'Content block ' + blocks + '. Added at ' + stamp() +
+          '. Each block makes the page taller, which is handy for scroll based checks.';
+        extraBody.appendChild(p);
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('data-log', 'Extra block ' + blocks + ' button');
+        b.textContent = 'Click block ' + blocks;
+        extraBody.appendChild(b);
+        onScroll();
+      });
+
+      // Dialog
+      var dlg = document.getElementById('testDialog');
+      document.getElementById('openDialog').addEventListener('click', function () {
+        if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+      });
+      document.getElementById('closeDialog').addEventListener('click', function () {
+        if (dlg.close) dlg.close(); else dlg.removeAttribute('open');
+      });
+
+      document.getElementById('toTop').addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      document.getElementById('resetForm').addEventListener('click', function () {
+        document.querySelectorAll('#form input, #form select, #form textarea').forEach(function (el) {
+          if (el.type === 'checkbox' || el.type === 'radio') el.checked = false;
+          else if (el.tagName === 'SELECT') el.selectedIndex = 0;
+          else el.value = '';
+        });
+        log('form reset');
+      });
+
+      // Usercentrics events
+      window.addEventListener('UC_UI_INITIALIZED', function () {
+        log('event: UC_UI_INITIALIZED');
+        updateShadowFlag();
+        readState('UC_UI_INITIALIZED');
+      });
+
+      window.addEventListener('UC_UI_CMP_EVENT', function (e) {
+        var d = e.detail || {};
+        log('event: UC_UI_CMP_EVENT type=' + (d.type || 'unknown') +
+            (d.source ? ' source=' + d.source : ''));
+        setTimeout(function () { readState('UC_UI_CMP_EVENT'); }, 200);
+      });
+
+      window.addEventListener('UC_UI_VIEW_CHANGED', function (e) {
+        var d = e.detail || {};
+        log('event: UC_UI_VIEW_CHANGED view=' + (d.view || 'unknown'));
+      });
+
+      window.addEventListener('load', function () {
+        setTimeout(function () { updateShadowFlag(); readState('page load'); }, 600);
+      });
+
+      log('page ready');
+    })();
+  </script>
+</body>
+</html>
